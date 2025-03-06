@@ -41,3 +41,13 @@ function addTicket(name, issue, priority) {
    
     ticket.addEventListener('dblclick', () => editTicket(ticket, name, issue, priority));
 }
+
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
+function highlightHighPriorityTickets() {
+    const highPriorityTickets = Array.from(document.querySelectorAll('.ticket.high'));
+
+    highPriorityTickets.forEach(ticket => {
+        ticket.style.border = '2px solid red';
+        ticket.style.backgroundColor = '#ffe6e6';
+    });
+}
