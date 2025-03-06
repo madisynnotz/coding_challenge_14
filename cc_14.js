@@ -51,3 +51,9 @@ function highlightHighPriorityTickets() {
         ticket.style.backgroundColor = '#ffe6e6';
     });
 }
+
+// Task 4: Demonstrate event bubbling with container click logging
+const ticketContainer = document.getElementById('ticketContainer');
+ticketContainer.addEventListener('click', () => {
+    console.log('Ticket container clicked (event bubbling occurred)');
+});
