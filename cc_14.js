@@ -57,3 +57,33 @@ const ticketContainer = document.getElementById('ticketContainer');
 ticketContainer.addEventListener('click', () => {
     console.log('Ticket container clicked (event bubbling occurred)');
 });
+
+// Task 5: Additional Challenge – Inline Editing of Support Tickets
+
+function editTicket(ticket, name, issue, priority) {
+    ticket.innerHTML = `
+        <input type="text" class="edit-name" value="${name}">
+        <input type="text" class="edit-issue" value="${issue}">
+        <select class="edit-priority">
+            <option value="High" ${priority === 'High' ? 'selected' : ''}>High</option>
+            <option value="Medium" ${priority === 'Medium' ? 'selected' : ''}>Medium</option>
+            <option value="Low" ${priority === 'Low' ? 'selected' : ''}>Low</option>
+        </select>
+        <button class="save-btn">Save</button>
+    `;
+
+    ticket.querySelector('.save-btn').addEventListener('click', () => {
+        const updatedName = ticket.querySelector('.edit-name').value;
+        const updatedIssue = ticket.querySelector('.edit-issue').value;
+        const updatedPriority = ticket.querySelector('.edit-priority').value;
+
+        // Re-create ticket with updated details
+        addTicket(updatedName, updatedIssue, updatedPriority);
+        ticket.remove(); // Remove editable version
+
+        // Re-highlight high-priority tickets
+        highlightHighPriorityTickets();
+    });
+}
+
+
